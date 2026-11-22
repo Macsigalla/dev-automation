@@ -4,9 +4,7 @@ name: Mirror GitHub to GitLab
 on:
   push:
     branches:
-      - "**"
-    tags:
-      - "*"
+      - main
   workflow_dispatch:
 
 permissions:
@@ -14,7 +12,7 @@ permissions:
 
 jobs:
   mirror:
-    name: Synchronize to GitLab
+    name: Synchronize GitHub to GitLab
     runs-on: ubuntu-latest
 
     steps:
@@ -23,13 +21,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Push branches and tags to GitLab
+      - name: Push main branch to GitLab
         env:
           GITLAB_TOKEN: ${{ secrets.gitlab-dev-automation }}
         run: |
           git remote add gitlab \
             "https://oauth2:${GITLAB_TOKEN}@gitlab.com/Macsigalla/dev-automation.git"
 
-          git push gitlab --all
-          git push gitlab --tags
+          git push gitlab "HEAD:refs/heads/main"
 
