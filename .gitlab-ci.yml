@@ -1,0 +1,10 @@
+
+stages:
+  - verify
+
+verify_gitlab_runner:
+  stage: verify
+  image: alpine:latest
+  script:
+    - echo "GitLab CI/CD is working!"
+    - echo "GitLab Runner executed this job successfully."
