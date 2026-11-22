@@ -25,7 +25,7 @@ jobs:
 
       - name: Push branches and tags to GitLab
         env:
-          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          GITLAB_TOKEN: ${{ secrets.gitlab-dev-automation }}
         run: |
           git remote add gitlab \
             "https://oauth2:${GITLAB_TOKEN}@gitlab.com/Macsigalla/dev-automation.git"
